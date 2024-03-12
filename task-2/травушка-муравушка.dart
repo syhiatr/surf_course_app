@@ -25,14 +25,11 @@ class AgriculturalMachinery implements Comparable<AgriculturalMachinery> {
   @override
   // ignore: non_nullable_equals_parameter
   bool operator ==(Object? other) {
-    if (other is! AgriculturalMachinery) return false;
-    if (other.id == id && other.releaseDate == releaseDate) return true;
-
-    return false;
+    return identical(this, other) || (other is AgriculturalMachinery && other.id == id && other.releaseDate == releaseDate);
   }
 
   @override
-  int get hashCode => id.hashCode ^ releaseDate.hashCode;
+  int get hashCode => Object.hashAll([id, releaseDate]);
 
   @override
   int compareTo(AgriculturalMachinery other) {
@@ -161,8 +158,8 @@ final mapAfter2010 = {
 void main() {
   final List<AgriculturalMachinery> machineries = {...getMachinaries(mapBefore2010), ...getMachinaries(mapAfter2010)}.toList();
 
-  print('Cредний возраст всей техники на всех угодьях: ${getMediumAge(machineries).toString()} дней');
-  print('Cредний возраст старой техники: ${getMediumAgeOfEldestHalf(machineries).toString()} дней');
+  print('Cредний возраст всей техники на всех угодьях: ${getMediumAge(machineries)} дней');
+  print('Cредний возраст старой техники: ${getMediumAgeOfEldestHalf(machineries)} дней');
 }
 
 Set<AgriculturalMachinery> getMachinaries(Map<Countries, List<Territory>> inMap) {
