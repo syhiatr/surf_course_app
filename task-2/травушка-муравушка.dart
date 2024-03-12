@@ -25,14 +25,11 @@ class AgriculturalMachinery implements Comparable<AgriculturalMachinery> {
   @override
   // ignore: non_nullable_equals_parameter
   bool operator ==(Object? other) {
-    if (other is! AgriculturalMachinery) return false;
-    if (other.id == id && other.releaseDate == releaseDate) return true;
-
-    return false;
+    return identical(this, other) || (other is AgriculturalMachinery && other.id == id && other.releaseDate == releaseDate);
   }
 
   @override
-  int get hashCode => id.hashCode ^ releaseDate.hashCode;
+  int get hashCode => Object.hashAll([id, releaseDate]);
 
   @override
   int compareTo(AgriculturalMachinery other) {
@@ -160,9 +157,10 @@ final mapAfter2010 = {
 
 void main() {
   final List<AgriculturalMachinery> machineries = {...getMachinaries(mapBefore2010), ...getMachinaries(mapAfter2010)}.toList();
+  machineries.sort();
 
-  print('Cредний возраст всей техники на всех угодьях: ${getMediumAge(machineries).toString()} дней');
-  print('Cредний возраст старой техники: ${getMediumAgeOfEldestHalf(machineries).toString()} дней');
+  print('Cредний возраст всей техники на всех угодьях: ${getMediumAge(machineries)} дней'); 
+  print('Cредний возраст старой техники: ${getMediumAge(machineries, rangePercent: 50)} дней');
 }
 
 Set<AgriculturalMachinery> getMachinaries(Map<Countries, List<Territory>> inMap) {
@@ -174,14 +172,10 @@ Set<AgriculturalMachinery> getMachinaries(Map<Countries, List<Territory>> inMap)
       .toSet();
 }
 
-int getMediumAge(List<AgriculturalMachinery> machineries) {
-  int days = 0;
-  for (final AgriculturalMachinery el in machineries) days += DateTime.now().difference(el.releaseDate).inDays;
-  return (days / machineries.length).truncate();
-}
-
-int getMediumAgeOfEldestHalf(List<AgriculturalMachinery> machineries) {
-  int eldestLength = (machineries.length / 2).truncate();
-  machineries.sort();
-  return (machineries.getRange(0, eldestLength).fold(0, (prev, el) => prev + DateTime.now().difference(el.releaseDate).inDays) / eldestLength).truncate();
+int getMediumAge(List<AgriculturalMachinery> machineries, {int rangePercent = 100}) {
+  int rangeLength = (machineries.length * rangePercent / 100).truncate(); 
+  return (machineries
+            .getRange(0, rangeLength)
+            .fold(0, (prev, el) => prev + DateTime.now().difference(el.releaseDate).inDays) / rangeLength)
+          .truncate();
 }
