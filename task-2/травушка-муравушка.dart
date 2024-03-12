@@ -161,8 +161,8 @@ final mapAfter2010 = {
 void main() {
   final List<AgriculturalMachinery> machineries = {...getMachinaries(mapBefore2010), ...getMachinaries(mapAfter2010)}.toList();
 
-  print('Cредний возраст всей техники на всех угодьях: ' + getMediumAge(machineries).toString() + ' дней');
-  print('Cредний возраст старой техники: ' + getMediumAgeOfEldestHalf(machineries).toString() + ' дней');
+  print('Cредний возраст всей техники на всех угодьях: ${getMediumAge(machineries).toString()} дней');
+  print('Cредний возраст старой техники: ${getMediumAgeOfEldestHalf(machineries).toString()} дней');
 }
 
 Set<AgriculturalMachinery> getMachinaries(Map<Countries, List<Territory>> inMap) {
