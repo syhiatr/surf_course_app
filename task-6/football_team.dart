@@ -1,8 +1,8 @@
-import 'Person.dart';
-import 'Doctor.dart';
-import 'Coach.dart';
-import 'Team.dart';
-import 'Player.dart';
+import 'person.dart';
+import 'doctor.dart';
+import 'team.dart';
+import 'player.dart';
+import 'coach.dart';
 
 main() {
   List<Team> teams = initTeams();

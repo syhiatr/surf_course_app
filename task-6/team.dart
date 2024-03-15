@@ -1,6 +1,6 @@
-import 'Coach.dart';
-import 'Doctor.dart';
-import 'Player.dart';
+import 'coach.dart';
+import 'doctor.dart';
+import 'player.dart';
 
 class Team {
   final String title;
@@ -11,7 +11,8 @@ class Team {
   List<Doctor> doctors = List.empty();
   List<Player> players = List.empty();
 
-  Team(this.title, this.city, this.standing, List<Coach> coaches, List<Doctor> doctors, List<Player> players) {
+  Team(this.title, this.city, this.standing, List<Coach> coaches,
+      List<Doctor> doctors, List<Player> players) {
     this.coaches = coaches;
     this.doctors = doctors;
     this.players = players;

@@ -3,7 +3,7 @@ class Person {
   final String nationality;
   final int age;
 
-  Person(this.name, this.nationality, this.age);
+  const Person(this.name, this.nationality, this.age);
 
   @override
   String toString() {

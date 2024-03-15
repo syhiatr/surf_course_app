@@ -1,10 +1,11 @@
-import 'Person.dart';
-import 'TeamMember.dart';
+import 'person.dart';
+import 'team_member.dart';
 
-class Player extends Person implements iTeamMember {
+class Player extends Person implements ITeamMember {
   late int goals = 0;
 
-  Player(Person person, String specialization, int salary) : super(person.name, person.nationality, person.age) {
+  Player(Person person, String specialization, int salary)
+      : super(person.name, person.nationality, person.age) {
     this.specialization = specialization;
     this.salary = salary;
   }

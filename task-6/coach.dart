@@ -1,8 +1,9 @@
-import 'Person.dart';
-import 'TeamMember.dart';
+import 'person.dart';
+import 'team_member.dart';
 
-class Coach extends Person implements iTeamMember {
-  Coach(Person person, String specialization, int salary) : super(person.name, person.nationality, person.age) {
+class Coach extends Person implements ITeamMember {
+  Coach(Person person, String specialization, int salary)
+      : super(person.name, person.nationality, person.age) {
     this.specialization = specialization;
     this.salary = salary;
   }
