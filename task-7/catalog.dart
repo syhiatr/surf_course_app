@@ -8,6 +8,4 @@ class Catalog {
       if (line.length > 0) articles.add(Article.parse(line));
     });
   }
-
-  List<Article> byCategory(String category) => articles.where((a) => a.category == category).toList();
 }
